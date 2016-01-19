@@ -1,0 +1,13 @@
+{
+    "version": "1.0.0-*",
+
+    "dependencies": {
+        "Microsoft.AspNet.Mvc": "6.0.0-beta6"
+    },
+
+    "frameworks": {
+        "dnx451": { },
+        "dnxcore50": { }
+    }
+
+}

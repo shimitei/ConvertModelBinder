@@ -1,0 +1,15 @@
+﻿@using ConvertModelBinderSample.Web.Models
+@model ConvertModel
+@{
+    ViewData["Title"] = "Submitted";
+}
+
+    <div>
+        <label asp-for="Number"></label>
+        @Model.Number
+    </div>
+
+    <div>
+        <label asp-for="Date"></label>
+        @Model.Date
+    </div>

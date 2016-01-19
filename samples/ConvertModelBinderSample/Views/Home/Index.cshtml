@@ -1,0 +1,21 @@
+﻿@using ConvertModelBinderSample.Web.Models
+@model ConvertModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<form asp-antiforgery="false" asp-action="Create">
+    <div>
+        <label asp-for="Number"></label>
+        <input type="text" asp-for="Number" />
+        <span asp-validation-for="Number"></span>
+    </div>
+
+    <div>
+        <label asp-for="Date"></label>
+        <input asp-for="Date" />
+        <span asp-validation-for="Date"></span>
+    </div>
+
+    <input type="submit" value="Submit" />
+</form>
