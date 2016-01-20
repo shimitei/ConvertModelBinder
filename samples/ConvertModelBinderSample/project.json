@@ -1,28 +1,25 @@
 {
-    "webroot": "wwwroot",
-    "userSecretsId": "aspnet5-ConvertModelBinderSample-c6f53dfa-ed91-4fa4-acf4-4845f572da0b",
-    "version": "1.0.0-*",
+  "version": "1.0.0-beta7",
 
-    "dependencies": {
-        "Microsoft.AspNet.Mvc": "6.0.0-beta6",
-        "Microsoft.AspNet.Mvc.TagHelpers": "6.0.0-beta6",
-        "Kestrel": "1.0.0-beta6",
-        "Microsoft.AspNet.Server.IIS": "1.0.0-beta6",
-        "Microsoft.AspNet.Server.WebListener": "1.0.0-beta6",
-        "Microsoft.AspNet.Tooling.Razor": "1.0.0-beta6",
-        "ConvertModelBinder": "1.0.0-*"
-    },
-
-    "commands": {
-        "web": "Microsoft.AspNet.Hosting --config hosting.ini"
-    },
-
-    "frameworks": {
-        "dnx451": { },
-        "dnxcore50": { }
-    },
-
-    "exclude": [
-        "wwwroot"
-    ]
+  "dependencies": {
+    "ConvertModelBinder": "1.0.0-*",
+    "Microsoft.AspNet.Mvc": "6.0.0-beta7",
+    "Microsoft.AspNet.Mvc.TagHelpers": "6.0.0-beta7",
+    "Microsoft.AspNet.Server.IIS": "1.0.0-beta7",
+    "Microsoft.AspNet.Server.Kestrel": "1.0.0-beta7",
+    "Microsoft.AspNet.Server.WebListener": "1.0.0-beta7",
+    "Microsoft.AspNet.Tooling.Razor": "1.0.0-beta7"
+  },
+  "commands": {
+    "web": "Microsoft.AspNet.Hosting server=Microsoft.AspNet.Server.WebListener server.urls=http://localhost:5001",
+    "kestrel": "Microsoft.AspNet.Hosting --server Microsoft.AspNet.Server.Kestrel --server.urls http://localhost:5000"
+  },
+  "frameworks": {
+    "dnx451": { },
+    "dnxcore50": { }
+  },
+  "exclude": [
+    "wwwroot"
+  ],
+  "webroot": "wwwroot"
 }

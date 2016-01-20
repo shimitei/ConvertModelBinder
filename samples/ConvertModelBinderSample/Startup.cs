@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Hosting;
+using Microsoft.AspNet.Mvc.ModelBinding;
+using Microsoft.Dnx.Runtime;
 using Microsoft.Framework.Configuration;
 using Microsoft.Framework.DependencyInjection;
-using Microsoft.Framework.Runtime;
-using Microsoft.AspNet.Mvc.ModelBinding;
 
 namespace ConvertModelBinderSample
 {
@@ -20,9 +20,7 @@ namespace ConvertModelBinderSample
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
-
-            services.ConfigureMvc(options =>
+            services.AddMvc(options =>
             {
                 // Add this
                 options.AddConvertModelBinder();

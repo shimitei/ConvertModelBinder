@@ -1,6 +1,6 @@
 # ConvertModelBinder
 
-ASP.NET5 MVC(beta6)用のカスタムモデルバインダーです。
+ASP.NET5 MVC用のカスタムモデルバインダーです。
 
 ## Description
 
@@ -14,8 +14,8 @@ ASP.NET5 MVC(beta6)用のカスタムモデルバインダーです。
 
 ## Requirement
 
-- ASP.NET5 MVC beta6  
-※beta7以降の動作は未確認です。
+- ASP.NET5 MVC beta7  
+※beta8以降の動作は未確認です。
 
 ## Usage
 
@@ -24,9 +24,7 @@ Startup.csのConfigureServicesで次のように設定すると、ConvertModelBi
 ```
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
-
-            services.ConfigureMvc(options =>
+            services.AddMvc(options =>
             {
                 // Add this
                 options.AddConvertModelBinder();
