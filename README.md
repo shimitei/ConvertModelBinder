@@ -14,8 +14,8 @@ ASP.NET5 MVC用のカスタムモデルバインダーです。
 
 ## Requirement
 
-- ASP.NET5 MVC beta7  
-※beta8以降の動作は未確認です。
+- ASP.NET5 MVC beta8  
+※RC1以降の動作は未確認です。
 
 ## Usage
 

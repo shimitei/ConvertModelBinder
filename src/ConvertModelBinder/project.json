@@ -1,8 +1,8 @@
 {
-    "version": "1.0.0-beta7",
+    "version": "1.0.0-beta8",
 
     "dependencies": {
-        "Microsoft.AspNet.Mvc": "6.0.0-beta7"
+        "Microsoft.AspNet.Mvc": "6.0.0-beta8"
     },
 
     "frameworks": {

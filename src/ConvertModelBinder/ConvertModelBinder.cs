@@ -6,27 +6,27 @@ namespace Microsoft.AspNet.Mvc.ModelBinding
 {
     public class ConvertModelBinder : IModelBinder
     {
-        public async Task<ModelBindingResult> BindModelAsync(ModelBindingContext bindingContext)
+        public Task<ModelBindingResult> BindModelAsync(ModelBindingContext bindingContext)
         {
             if (bindingContext.ModelType == typeof(decimal)
                 || bindingContext.ModelType == typeof(decimal?))
             {
-                var valueProviderResult = await bindingContext.ValueProvider.GetValueAsync(bindingContext.ModelName);
+                var valueProviderResult = bindingContext.ValueProvider.GetValue(bindingContext.ModelName);
                 if (valueProviderResult == null)
                 {
-                    return null;
+                    return ModelBindingResult.NoResultAsync;
                 }
-                if (string.IsNullOrEmpty(valueProviderResult.AttemptedValue))
+                if (string.IsNullOrEmpty(valueProviderResult.Values))
                 {
                     if (bindingContext.ModelType == typeof(decimal?))
                     {
                         decimal? defaultValue = null;
-                        return new ModelBindingResult(defaultValue, bindingContext.ModelName, isModelSet: true);
+                        return ModelBindingResult.SuccessAsync(bindingContext.ModelName, defaultValue);
                     }
                     else
                     {
                         decimal defaultValue = 0.0M;
-                        return new ModelBindingResult(defaultValue, bindingContext.ModelName, isModelSet: true);
+                        return ModelBindingResult.SuccessAsync(bindingContext.ModelName, defaultValue);
                     }
                 }
 
@@ -35,10 +35,9 @@ namespace Microsoft.AspNet.Mvc.ModelBinding
                 try
                 {
                     newModel = Convert.ToDecimal(
-                        valueProviderResult.AttemptedValue,
-                        CultureInfo.InvariantCulture
-                    );
-                    return new ModelBindingResult(newModel, bindingContext.ModelName, isModelSet: true);
+                        valueProviderResult.Values,
+                        CultureInfo.InvariantCulture);
+                    return ModelBindingResult.SuccessAsync(bindingContext.ModelName, newModel);
                 }
                 catch (Exception e)
                 {
@@ -49,27 +48,28 @@ namespace Microsoft.AspNet.Mvc.ModelBinding
                     //    string.Format("not decimal input:{0}", displayName));
                 }
                 // Were able to find a converter for the type but conversion failed.
-                // Tell the model binding system to skip other model binders i.e. return non-null.
-                return new ModelBindingResult(model: null, key: bindingContext.ModelName, isModelSet: false);
-            } else if (bindingContext.ModelType == typeof(DateTime)
+                // Tell the model binding system to skip other model binders.
+                return ModelBindingResult.FailedAsync(bindingContext.ModelName);
+            }
+            else if (bindingContext.ModelType == typeof(DateTime)
                 || bindingContext.ModelType == typeof(DateTime?))
             {
-                var valueProviderResult = await bindingContext.ValueProvider.GetValueAsync(bindingContext.ModelName);
+                var valueProviderResult = bindingContext.ValueProvider.GetValue(bindingContext.ModelName);
                 if (valueProviderResult == null)
                 {
                     return null;
                 }
-                if (string.IsNullOrEmpty(valueProviderResult.AttemptedValue))
+                if (string.IsNullOrEmpty(valueProviderResult.Values))
                 {
                     if (bindingContext.ModelType == typeof(DateTime?))
                     {
                         DateTime? defaultValue = null;
-                        return new ModelBindingResult(defaultValue, bindingContext.ModelName, isModelSet: true);
+                        return ModelBindingResult.SuccessAsync(bindingContext.ModelName, defaultValue);
                     }
                     else
                     {
                         DateTime defaultValue = new DateTime();
-                        return new ModelBindingResult(defaultValue, bindingContext.ModelName, isModelSet: true);
+                        return ModelBindingResult.SuccessAsync(bindingContext.ModelName, defaultValue);
                     }
                 }
 
@@ -78,10 +78,9 @@ namespace Microsoft.AspNet.Mvc.ModelBinding
                 try
                 {
                     newModel = Convert.ToDateTime(
-                        valueProviderResult.AttemptedValue,
-                        CultureInfo.InvariantCulture
-                    );
-                    return new ModelBindingResult(newModel, bindingContext.ModelName, isModelSet: true);
+                        valueProviderResult.Values,
+                        CultureInfo.InvariantCulture);
+                    return ModelBindingResult.SuccessAsync(bindingContext.ModelName, newModel);
                 }
                 catch (Exception e)
                 {
@@ -92,11 +91,11 @@ namespace Microsoft.AspNet.Mvc.ModelBinding
                     //    string.Format("not DateTime input:{0}", displayName));
                 }
                 // Were able to find a converter for the type but conversion failed.
-                // Tell the model binding system to skip other model binders i.e. return non-null.
-                return new ModelBindingResult(model: null, key: bindingContext.ModelName, isModelSet: false);
+                // Tell the model binding system to skip other model binders.
+                return ModelBindingResult.FailedAsync(bindingContext.ModelName);
             }
 
-            return null;
+            return ModelBindingResult.NoResultAsync;
         }
     }
 }

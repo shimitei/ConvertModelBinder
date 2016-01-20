@@ -11,7 +11,7 @@ namespace ConvertModelBinderSample
     {
         public Startup(IHostingEnvironment env, IApplicationEnvironment appEnv)
         {
-            var builder = new ConfigurationBuilder(appEnv.ApplicationBasePath);
+            var builder = new ConfigurationBuilder().SetBasePath(appEnv.ApplicationBasePath);
             builder.AddEnvironmentVariables();
             Configuration = builder.Build();
         }
