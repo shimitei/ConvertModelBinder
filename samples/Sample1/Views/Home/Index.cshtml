@@ -1,4 +1,4 @@
-﻿@using ConvertModelBinderSample.Web.Models
+﻿@using Sample1.Models
 @model ConvertModel
 @{
     ViewData["Title"] = "Home Page";
@@ -9,6 +9,12 @@
         <label asp-for="Number"></label>
         <input type="text" asp-for="Number" />
         <span asp-validation-for="Number"></span>
+    </div>
+
+    <div>
+        <label asp-for="Number2"></label>
+        <input type="text" asp-for="Number2" />
+        <span asp-validation-for="Number2"></span>
     </div>
 
     <div>

@@ -1,102 +1,71 @@
 ﻿using System;
 using System.Globalization;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc.Internal;
 
-namespace Microsoft.AspNet.Mvc.ModelBinding
+namespace Microsoft.AspNetCore.Mvc.ModelBinding.Binders
 {
     public class ConvertModelBinder : IModelBinder
     {
-        public Task<ModelBindingResult> BindModelAsync(ModelBindingContext bindingContext)
+        public Task BindModelAsync(ModelBindingContext bindingContext)
         {
-            if (bindingContext.ModelType == typeof(decimal)
-                || bindingContext.ModelType == typeof(decimal?))
+            if (bindingContext == null)
             {
-                var valueProviderResult = bindingContext.ValueProvider.GetValue(bindingContext.ModelName);
-                if (valueProviderResult == null)
-                {
-                    return ModelBindingResult.NoResultAsync;
-                }
+                throw new ArgumentNullException(nameof(bindingContext));
+            }
+
+            var valueProviderResult = bindingContext.ValueProvider.GetValue(bindingContext.ModelName);
+            if (valueProviderResult == ValueProviderResult.None)
+            {
+                // no entry
+                bindingContext.Result = ModelBindingResult.Failed(bindingContext.ModelName);
+                return TaskCache.CompletedTask;
+            }
+
+            bindingContext.ModelState.SetModelValue(bindingContext.ModelName, valueProviderResult);
+
+            try
+            {
                 if (string.IsNullOrEmpty(valueProviderResult.Values))
                 {
                     if (bindingContext.ModelType == typeof(decimal?))
                     {
                         decimal? defaultValue = null;
-                        return ModelBindingResult.SuccessAsync(bindingContext.ModelName, defaultValue);
+                        bindingContext.Result = ModelBindingResult.Success(bindingContext.ModelName, defaultValue);
+                        return TaskCache.CompletedTask;
                     }
                     else
                     {
                         decimal defaultValue = 0.0M;
-                        return ModelBindingResult.SuccessAsync(bindingContext.ModelName, defaultValue);
+                        bindingContext.Result = ModelBindingResult.Success(bindingContext.ModelName, defaultValue);
+                        return TaskCache.CompletedTask;
                     }
                 }
 
-                decimal newModel;
-                bindingContext.ModelState.SetModelValue(bindingContext.ModelName, valueProviderResult);
-                try
-                {
-                    newModel = Convert.ToDecimal(
+                decimal model = Convert.ToDecimal(
                         valueProviderResult.Values,
                         CultureInfo.InvariantCulture);
-                    return ModelBindingResult.SuccessAsync(bindingContext.ModelName, newModel);
-                }
-                catch (Exception e)
-                {
-                    bindingContext.ModelState.TryAddModelError(bindingContext.ModelName, e, bindingContext.ModelMetadata);
-                    //customized error message
-                    //string displayName = bindingContext.ModelMetadata.DisplayName ?? bindingContext.ModelName;
-                    //bindingContext.ModelState.TryAddModelError(bindingContext.ModelName,
-                    //    string.Format("not decimal input:{0}", displayName));
-                }
-                // Were able to find a converter for the type but conversion failed.
-                // Tell the model binding system to skip other model binders.
-                return ModelBindingResult.FailedAsync(bindingContext.ModelName);
+
+                bindingContext.Result = ModelBindingResult.Success(bindingContext.ModelName, model);
+                return TaskCache.CompletedTask;
             }
-            else if (bindingContext.ModelType == typeof(DateTime)
-                || bindingContext.ModelType == typeof(DateTime?))
+            catch (Exception exception)
             {
-                var valueProviderResult = bindingContext.ValueProvider.GetValue(bindingContext.ModelName);
-                if (valueProviderResult == null)
-                {
-                    return null;
-                }
-                if (string.IsNullOrEmpty(valueProviderResult.Values))
-                {
-                    if (bindingContext.ModelType == typeof(DateTime?))
-                    {
-                        DateTime? defaultValue = null;
-                        return ModelBindingResult.SuccessAsync(bindingContext.ModelName, defaultValue);
-                    }
-                    else
-                    {
-                        DateTime defaultValue = new DateTime();
-                        return ModelBindingResult.SuccessAsync(bindingContext.ModelName, defaultValue);
-                    }
-                }
+                bindingContext.ModelState.TryAddModelError(
+                    bindingContext.ModelName,
+                    exception,
+                    bindingContext.ModelMetadata);
 
-                DateTime newModel;
-                bindingContext.ModelState.SetModelValue(bindingContext.ModelName, valueProviderResult);
-                try
-                {
-                    newModel = Convert.ToDateTime(
-                        valueProviderResult.Values,
-                        CultureInfo.InvariantCulture);
-                    return ModelBindingResult.SuccessAsync(bindingContext.ModelName, newModel);
-                }
-                catch (Exception e)
-                {
-                    bindingContext.ModelState.TryAddModelError(bindingContext.ModelName, e, bindingContext.ModelMetadata);
-                    //customized error message
-                    //string displayName = bindingContext.ModelMetadata.DisplayName ?? bindingContext.ModelName;
-                    //bindingContext.ModelState.TryAddModelError(bindingContext.ModelName,
-                    //    string.Format("not DateTime input:{0}", displayName));
-                }
+                //customized error message
+                //string displayName = bindingContext.ModelMetadata.DisplayName ?? bindingContext.ModelName;
+                //bindingContext.ModelState.TryAddModelError(bindingContext.ModelName,
+                //    string.Format("not decimal input:{0}", displayName));
+
                 // Were able to find a converter for the type but conversion failed.
                 // Tell the model binding system to skip other model binders.
-                return ModelBindingResult.FailedAsync(bindingContext.ModelName);
+                bindingContext.Result = ModelBindingResult.Failed(bindingContext.ModelName);
+                return TaskCache.CompletedTask;
             }
-
-            // Able to resolve a binder type but need a new model instance and that binder cannot create it.
-            return ModelBindingResult.NoResultAsync;
         }
     }
 }

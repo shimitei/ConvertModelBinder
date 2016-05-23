@@ -1,4 +1,4 @@
-﻿@using ConvertModelBinderSample.Web.Models
+﻿@using Sample1.Models
 @model ConvertModel
 @{
     ViewData["Title"] = "Submitted";
@@ -7,6 +7,11 @@
     <div>
         <label asp-for="Number"></label>
         @Model.Number
+    </div>
+
+    <div>
+        <label asp-for="Number2"></label>
+        @Model.Number2
     </div>
 
     <div>

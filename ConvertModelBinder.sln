@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{DE5D6473-C3A0-49F6-A058-3B50EE389D57}"
 EndProject
@@ -11,9 +11,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		NuGet.Config = NuGet.Config
 	EndProjectSection
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "ConvertModelBinderSample", "samples\ConvertModelBinderSample\ConvertModelBinderSample.xproj", "{B74C4374-7800-431B-ADD4-90FEA4FCD295}"
-EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "ConvertModelBinder", "src\ConvertModelBinder\ConvertModelBinder.xproj", "{228C14F7-9163-40CA-A616-9C88FE653297}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Sample1", "samples\Sample1\Sample1.xproj", "{259B2176-A863-474A-BB78-06C89715B626}"
+	ProjectSection(ProjectDependencies) = postProject
+		{228C14F7-9163-40CA-A616-9C88FE653297} = {228C14F7-9163-40CA-A616-9C88FE653297}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,20 +24,20 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{B74C4374-7800-431B-ADD4-90FEA4FCD295}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B74C4374-7800-431B-ADD4-90FEA4FCD295}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B74C4374-7800-431B-ADD4-90FEA4FCD295}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B74C4374-7800-431B-ADD4-90FEA4FCD295}.Release|Any CPU.Build.0 = Release|Any CPU
 		{228C14F7-9163-40CA-A616-9C88FE653297}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{228C14F7-9163-40CA-A616-9C88FE653297}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{228C14F7-9163-40CA-A616-9C88FE653297}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{228C14F7-9163-40CA-A616-9C88FE653297}.Release|Any CPU.Build.0 = Release|Any CPU
+		{259B2176-A863-474A-BB78-06C89715B626}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{259B2176-A863-474A-BB78-06C89715B626}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{259B2176-A863-474A-BB78-06C89715B626}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{259B2176-A863-474A-BB78-06C89715B626}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{B74C4374-7800-431B-ADD4-90FEA4FCD295} = {DE5D6473-C3A0-49F6-A058-3B50EE389D57}
 		{228C14F7-9163-40CA-A616-9C88FE653297} = {DE5D6473-C3A0-49F6-A058-3B50EE389D57}
+		{259B2176-A863-474A-BB78-06C89715B626} = {DE5D6473-C3A0-49F6-A058-3B50EE389D57}
 	EndGlobalSection
 EndGlobal

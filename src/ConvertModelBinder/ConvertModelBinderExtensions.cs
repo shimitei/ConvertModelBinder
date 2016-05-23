@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNet.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
 
-namespace Microsoft.AspNet.Mvc.ModelBinding
+namespace Microsoft.AspNetCore.Mvc
 {
     public static class ConvertModelBinderExtensions
     {
@@ -15,7 +12,7 @@ namespace Microsoft.AspNet.Mvc.ModelBinding
                 throw new ArgumentNullException(nameof(options));
             }
 
-            options.ModelBinders.Insert(0, new ConvertModelBinder());
+            options.ModelBinderProviders.Insert(0, new ConvertModelBinderProvider());
             return options;
         }
     }

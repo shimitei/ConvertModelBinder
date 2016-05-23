@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNet.Mvc;
-using ConvertModelBinderSample.Web.Models;
+using Microsoft.AspNetCore.Mvc;
+using Sample1.Models;
 
-namespace ConvertModelBinderSample.Controllers
+namespace Sample1.Controllers
 {
     public class HomeController : Controller
     {

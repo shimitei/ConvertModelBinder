@@ -1,13 +1,19 @@
 {
-  "version": "1.0.0-rc1",
+  "version": "1.0.0-rc2",
 
   "dependencies": {
-    "Microsoft.AspNet.Mvc": "6.0.0-rc1-final"
+    "Microsoft.AspNetCore.Mvc": "1.0.0-rc2-final"
   },
 
   "frameworks": {
     "dnx451": { },
-    "dnxcore50": { }
+    "netcoreapp1.0": {
+      "imports": [
+        "dotnet5.6",
+        "dnxcore50",
+        "portable-net45+win8"
+      ]
+    }
   }
 
 }
