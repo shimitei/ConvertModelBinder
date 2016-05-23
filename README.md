@@ -1,20 +1,21 @@
 # ConvertModelBinder
 
-ASP.NET5 MVC用のカスタムモデルバインダーです。
+ASP.NET Core MVC用のカスタムモデルバインダーです。
 
 ## Description
 
 標準のMVCモデルバインディングでは、「1,024」といったカンマ区切りの数値をdecimalにバインドすることができません。  
-このConvertModelBinderを用いると、decimalとDateTimeへの柔軟なバインドを行うことができます。
+このConvertModelBinderを用いると、decimalへの柔軟なバインドを行うことができます。
 
 ## Features
 
-- decimal, decimal?, DateTime, DateTime?へのバインドの拡張  
-※入力値をConvert.ToDecimal、Convert.ToDateTimeで変換しているだけです。  
+- decimal, decimal?, ~~DateTime, DateTime?~~へのバインドの拡張  
+※入力値をConvert.ToDecimalで変換しているだけです。  
+※RC2ではConvert.ToDateTimeを通さなくても同様にバインドされたため外しました。  
 
 ## Requirement
 
-- ASP.NET5 MVC RC1  
+- ASP.NET Core MVC RC2  
 
 ## Usage
 
