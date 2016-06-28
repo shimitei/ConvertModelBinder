@@ -11,11 +11,11 @@ ASP.NET Core MVC用のカスタムモデルバインダーです。
 
 - decimal, decimal?, ~~DateTime, DateTime?~~へのバインドの拡張  
 ※入力値をConvert.ToDecimalで変換しているだけです。  
-※RC2ではConvert.ToDateTimeを通さなくても同様にバインドされたため外しました。  
+※RC2以降ではConvert.ToDateTimeを通さなくても同様にバインドされたため外しました。  
 
 ## Requirement
 
-- ASP.NET Core MVC RC2  
+- ASP.NET Core MVC 1.0  
 
 ## Usage
 

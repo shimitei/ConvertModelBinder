@@ -1,21 +1,20 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{DE5D6473-C3A0-49F6-A058-3B50EE389D57}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{5BE0D8B2-A8C6-4EAF-A036-4DE8BD7739C2}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{CB8F7805-7F5F-48EC-B8D8-8EFFF2C4DAE7}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{27CE2D7A-631B-48EE-A376-A2CC4A080DC6}"
 	ProjectSection(SolutionItems) = preProject
 		global.json = global.json
-		NuGet.Config = NuGet.Config
 	EndProjectSection
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "ConvertModelBinder", "src\ConvertModelBinder\ConvertModelBinder.xproj", "{228C14F7-9163-40CA-A616-9C88FE653297}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "ConvertModelBinder", "src\ConvertModelBinder\ConvertModelBinder.xproj", "{4399BBD5-6D94-4774-8AE7-E00198EFCB35}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Sample1", "samples\Sample1\Sample1.xproj", "{259B2176-A863-474A-BB78-06C89715B626}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Sample1", "samples\Sample1\Sample1.xproj", "{412FDFC1-DC16-4265-99BE-131456569A9A}"
 	ProjectSection(ProjectDependencies) = postProject
-		{228C14F7-9163-40CA-A616-9C88FE653297} = {228C14F7-9163-40CA-A616-9C88FE653297}
+		{4399BBD5-6D94-4774-8AE7-E00198EFCB35} = {4399BBD5-6D94-4774-8AE7-E00198EFCB35}
 	EndProjectSection
 EndProject
 Global
@@ -24,20 +23,20 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{228C14F7-9163-40CA-A616-9C88FE653297}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{228C14F7-9163-40CA-A616-9C88FE653297}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{228C14F7-9163-40CA-A616-9C88FE653297}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{228C14F7-9163-40CA-A616-9C88FE653297}.Release|Any CPU.Build.0 = Release|Any CPU
-		{259B2176-A863-474A-BB78-06C89715B626}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{259B2176-A863-474A-BB78-06C89715B626}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{259B2176-A863-474A-BB78-06C89715B626}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{259B2176-A863-474A-BB78-06C89715B626}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4399BBD5-6D94-4774-8AE7-E00198EFCB35}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4399BBD5-6D94-4774-8AE7-E00198EFCB35}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4399BBD5-6D94-4774-8AE7-E00198EFCB35}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4399BBD5-6D94-4774-8AE7-E00198EFCB35}.Release|Any CPU.Build.0 = Release|Any CPU
+		{412FDFC1-DC16-4265-99BE-131456569A9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{412FDFC1-DC16-4265-99BE-131456569A9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{412FDFC1-DC16-4265-99BE-131456569A9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{412FDFC1-DC16-4265-99BE-131456569A9A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{228C14F7-9163-40CA-A616-9C88FE653297} = {DE5D6473-C3A0-49F6-A058-3B50EE389D57}
-		{259B2176-A863-474A-BB78-06C89715B626} = {DE5D6473-C3A0-49F6-A058-3B50EE389D57}
+		{4399BBD5-6D94-4774-8AE7-E00198EFCB35} = {5BE0D8B2-A8C6-4EAF-A036-4DE8BD7739C2}
+		{412FDFC1-DC16-4265-99BE-131456569A9A} = {5BE0D8B2-A8C6-4EAF-A036-4DE8BD7739C2}
 	EndGlobalSection
 EndGlobal

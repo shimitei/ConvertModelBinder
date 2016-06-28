@@ -24,5 +24,10 @@ namespace Sample1.Controllers
 
             return View("Index", model);
         }
+
+        public IActionResult Error()
+        {
+            return View();
+        }
     }
 }

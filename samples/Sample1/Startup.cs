@@ -1,4 +1,8 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -25,7 +29,6 @@ namespace Sample1
         public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
-            //services.AddMvc();
             services.AddMvc(options =>
             {
                 // Add this
@@ -39,8 +42,15 @@ namespace Sample1
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
-            app.UseDeveloperExceptionPage();
-            app.UseBrowserLink();
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+                app.UseBrowserLink();
+            }
+            else
+            {
+                app.UseExceptionHandler("/Home/Error");
+            }
 
             app.UseStaticFiles();
 
